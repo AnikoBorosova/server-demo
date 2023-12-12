@@ -7,7 +7,6 @@ const server = express();
 server.use(bodyParser.json()); 
 server.use(bodyParser.urlencoded({ extended: true })); 
 
-
 server.get('/', (req, res) => {
     res.send('Welcome on the main page!');
   });
@@ -21,8 +20,17 @@ server.get('/registration', (req, res) => {
   });
 
 server.post('/registration', (req, res) => {
-    console.log('REQUEST ', req.body);
-    res.send('Your username was registered.');
+    console.log('Incoming request with username ', req.body);
+
+    /*
+    if (!req.body.username) {
+      res.status(400);
+      res.send('Bad Request: username is missing.');
+    } else {
+      res.send('Your username was registered.');
+    }
+    */
+    // res.send('Your username was registered.');
   });
   
 server.listen(3000);
